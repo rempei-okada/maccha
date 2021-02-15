@@ -1,7 +1,7 @@
-import { createMacchaApiServer } from "./";
+import { createMacchaApiServer } from "../src";
 import path = require("path");
 import env = require("dotenv");
-import { TestPlugin } from "./Plugins";
+import { TestPlugin } from "../src/Plugins";
 
 env.config();
 

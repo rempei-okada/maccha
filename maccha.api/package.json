@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "simple headless cms for creating web sites",
   "author": "",
-  "main": "index.js",
+  "main": "dist/src/index.js",
   "license": "MIT",
   "scripts": {
     "script": "ts-node",
