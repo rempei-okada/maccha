@@ -1,0 +1,30 @@
+{
+  "extends": "./paths.json",
+  "compilerOptions": {
+    "baseUrl": "src",
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "emitDecoratorMetadata": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": [
+    "src"
+  ]
+}
