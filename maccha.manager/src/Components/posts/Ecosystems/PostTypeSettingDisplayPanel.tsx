@@ -21,7 +21,7 @@ export function PostTypeSettingPanel(props: PostTypeSettingPanelProps) {
         history.push(`/posts/${postType.taxonomy.name}/edit`);
     }
 
-    function copyToClipBoard(text:string){
+    function copyToClipBoard(text: string) {
         navigator.clipboard?.writeText(text);
     }
 
@@ -41,7 +41,7 @@ export function PostTypeSettingPanel(props: PostTypeSettingPanelProps) {
                 <Box display="flex">
                     <Typography variant="overline" color="textSecondary">エンドポイント</Typography>
                     <FlexSpacer />
-                    <IconButton color="primary" size="small" onClick={_=> copyToClipBoard(`${axios.defaults.baseURL}contents/${props.postType.taxonomy.name}`)}>
+                    <IconButton color="primary" size="small" onClick={_ => copyToClipBoard(`${axios.defaults.baseURL}contents/${props.postType.taxonomy.name}`)}>
                         <FileCopy fontSize="small" />
                     </IconButton>
                 </Box>
@@ -66,30 +66,37 @@ export function PostTypeSettingPanel(props: PostTypeSettingPanelProps) {
             <Box mt={1}>
                 <Typography variant="overline" color="textSecondary">スキーム</Typography>
                 <Divider />
-                <List>
-                    {
-                        postType.taxonomy.schemes.map(
-                            s => (
-                                <Box mb={1}>
-                                    <Box>
-                                        <Typography variant="body2" style={{ fontSize: "12px" }} color="textSecondary" noWrap>{s.name ? s.name : "　"}</Typography>
-                                    </Box>
-                                    <Box>
-                                        <Typography variant="body2" style={{ fontSize: "12px" }} color="textSecondary" noWrap>{s.displayName ? s.displayName : "　"}</Typography>
-                                    </Box>
-                                    <Box>
-                                        <Typography color="primary" variant="subtitle2" noWrap>{schemeTypeDisplayNames[s.type] ?? "　"}</Typography>
-                                    </Box>
-                                    <Box>
-                                        <Typography style={{ fontSize: "11px" }} variant="caption" color="textSecondary">{s.description}</Typography>
-                                    </Box>
-                                    <Box mt={1} />
-                                    <Divider />
-                                </Box>
-                            )
-                        )
-                    }
-                </List>
+                {
+                    postType.taxonomy.schemes.length ?
+                        <List>
+                            {
+                                postType.taxonomy.schemes.map(
+                                    s => (
+                                        <Box mb={1}>
+                                            <Box>
+                                                <Typography variant="body2" style={{ fontSize: "12px" }} color="textSecondary" noWrap>{s.name ? s.name : "　"}</Typography>
+                                            </Box>
+                                            <Box>
+                                                <Typography variant="body2" style={{ fontSize: "12px" }} color="textSecondary" noWrap>{s.displayName ? s.displayName : "　"}</Typography>
+                                            </Box>
+                                            <Box>
+                                                <Typography color="primary" variant="subtitle2" noWrap>{schemeTypeDisplayNames[s.type] ?? "　"}</Typography>
+                                            </Box>
+                                            <Box>
+                                                <Typography style={{ fontSize: "11px" }} variant="caption" color="textSecondary">{s.description}</Typography>
+                                            </Box>
+                                            <Box mt={1} />
+                                            <Divider />
+                                        </Box>
+                                    )
+                                )
+                            }
+                        </List>
+                        :
+                        <Typography color="textSecondary" variant="caption">
+                            スキームがありません
+                        </Typography>
+                }
             </Box>
         </Box >
     );

@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import {
     Box,
     Divider,
+    IconButton,
     makeStyles,
     MenuItem,
     Select,
     Typography
 } from "@material-ui/core";
-import { ValidationTextField } from "../../commons";
+import { FlexSpacer, ValidationTextField } from "../../commons";
 import { PostType } from "../../../Models/posts/entities/PostType";
 import { Taxonomy } from "../../../Models/Contents/Entities/Taxonomy";
 import { axios } from "../../../Repositories/config";
+import { FileCopy } from "@material-ui/icons";
 
 interface PostTypeBasicSettingPanelProps {
     postType: PostType;
@@ -26,6 +28,10 @@ export function PostTypeBasicSettingPanel(props: PostTypeBasicSettingPanelProps)
                 taxonomy: props.postType.taxonomy.clone({ [key]: value })
             })
         );
+    }
+
+    function copyToClipBoard(text: string) {
+        navigator.clipboard?.writeText(text);
     }
 
     return (
@@ -73,6 +79,10 @@ export function PostTypeBasicSettingPanel(props: PostTypeBasicSettingPanelProps)
                 <Typography style={{ width: "100%", maxWidth: "100%", wordBreak: "break-all" }} >
                     {axios.defaults.baseURL}contents/{props.postType.taxonomy.name}
                 </Typography>
+                <FlexSpacer />
+                <IconButton color="primary" size="small" onClick={_ => copyToClipBoard(`${axios.defaults.baseURL}contents/${props.postType.taxonomy.name}`)}>
+                    <FileCopy fontSize="small" />
+                </IconButton>
             </Box>
 
             <Box

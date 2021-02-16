@@ -4,8 +4,11 @@ import path = require("path");
 import { from } from "rxjs";
 import { mergeMap } from "rxjs/operators";
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const mkdirp = require("mkdirp");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require("fs");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const getDirName = require("path").dirname;
 
 
@@ -27,11 +30,13 @@ export class MediaRepository implements IMediaRepository {
         return names.map(path => `/uploads/${identifier}/${path}`);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public async postAsync(userId: string, file: any): Promise<string> {
         await writeFile(path.join(process.cwd(), "public/uploads", userId, file.originalname), file.buffer);
         return `/uploads/${userId}/${file.originalname}`;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public async saveAvatarAsync(userId: string, file: any): Promise<string> {
         await writeFile(path.join(process.cwd(), "public/avaters", userId, file.originalname), file.buffer);
         return `/avaters/${userId}/${file.originalname}`;

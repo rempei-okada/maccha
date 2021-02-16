@@ -1,3 +1,2 @@
-import { Test61604293024136 } from "./1604293024136-Test6";
-
-export const Migration = Test61604293024136;
+import { Init1613497016205 } from "./1613497016205-Init";
+export const Migration = Init1613497016205;

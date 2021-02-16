@@ -5,7 +5,6 @@ import { WebSiteEntity } from "../Database/Entities/web-site.entity";
 import { WebSite } from "@/Models/WebSites/web-site";
 import { ICreateWebSiteParams } from "@/Models/WebSites/create-werb-site.params";
 import { IUpdateWebSiteParams } from "@/Models/WebSites/update-web-site.params";
-import { addDefaultPost } from "../Database/InitialData/appendInitialData";
 
 export class WebSitesRepository implements IWebSitesRepository {
     /**
@@ -81,7 +80,6 @@ export class WebSitesRepository implements IWebSitesRepository {
                 name: params.name
             }));
             if (created) {
-                await addDefaultPost(created.webSiteId ?? "", this.connection.createQueryRunner());
                 return new WebSite(
                     created.webSiteId ?? "",
                     created.name,
