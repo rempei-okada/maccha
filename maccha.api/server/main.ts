@@ -9,14 +9,14 @@ async function bootstrap(): Promise<void> {
     const app = await createMacchaApiServer({
         assetsDir: path.join(process.cwd(), "public"),
         authorization: {
-            expiresIn: process.env.EXPIRES_IN ?? "",
-            jwtKey: process.env.JWT_KEY ?? ""
+            expiresIn: process.env.EXPIRES_IN ?? "10m",
+            jwtKey: process.env.JWT_KEY ?? "hogehoge"
         },
         database: {
-            username: process.env.DB_USERNAME ?? "",
-            password: process.env.DB_PASSWORD ?? "",
-            database: process.env.DB_DATABASE ?? "",
-            host: process.env.DB_HOST ?? "",
+            username: process.env.DB_USERNAME ?? "root",
+            password: process.env.DB_PASSWORD ?? "root",
+            database: process.env.DB_DATABASE ?? "maccha",
+            host: process.env.DB_HOST ?? "localhost",
             port: Number(process.env.DB_PORT),
             logging: false,
             logger: process.env.LOGGER_TYPE as "simple-console"

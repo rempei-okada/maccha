@@ -2,8 +2,7 @@ import { DynamicModule, Global, INestApplication, Module, ValidationPipe } from 
 import { NestFactory } from "@nestjs/core";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { ConnectionOptions, createConnection, MigrationInterface, QueryRunner } from "typeorm";
-import { MacchaModule } from "./modules/espresso.module";
-export * from "@/modules/espresso.module";
+import { MacchaModule } from "./modules/maccha.module";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { JwtModule } from "@nestjs/jwt";
 import { ServeStaticModule } from "@nestjs/serve-static";
