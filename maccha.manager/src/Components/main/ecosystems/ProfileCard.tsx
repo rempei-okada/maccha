@@ -1,19 +1,12 @@
-import React, { useEffect, useState, ReactComponentElement, cloneElement } from "react";
+import React from "react";
 import {
-    List,
-    makeStyles,
-    ListItem,
-    ListItemIcon,
-    Checkbox, InputBase, useTheme, Button, ListItemText,
-    Tabs, Tab,
-    Icon,
+    Button,
+    ListItemText,
     Box,
-    Divider,
-    Menu,
     Typography,
     Select,
     MenuItem,
-    IconButton, Avatar
+    Avatar
 } from "@material-ui/core";
 import { services } from "../../../Services";
 import { useObserver } from "mobx-react";
@@ -50,6 +43,7 @@ export default function ProfileCard() {
                 flexDirection="column"
                 alignItems="center"
                 width="280px"
+                overflow="hidden"
             >
                 <Avatar
                     style={{ height: "80px", width: "80px", background: theme.palette.primary.main }}

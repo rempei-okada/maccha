@@ -14,6 +14,7 @@ import "../Environments/style.scss";
 import { Field } from "../../../Models/Contents/Entities/Field";
 import { Scheme } from "../../../Models/Contents/Entities/Scheme";
 import { SchemeEditorProps } from "../FieldEditors/SchemeEditorProps";
+import { axios } from "../../../Repositories/config";
 
 export function PostPreviewPanel() {
     const { postEditService, postManagementsService } = services;
@@ -75,11 +76,24 @@ export function PostPreviewPanel() {
 }
 
 function FieldRenderer(props: { field: Field, scheme: Scheme }) {
+    if (!props.scheme) {
+        return <></>;
+    }
+
     if (props.scheme.type === "photo-gallery") {
         return (
             <>
                 <Typography variant="h4" style={{ marginTop: "16px" }}>{props.scheme.displayName}</Typography>
                 <PhotoGalleryPreview images={props.field.value.split(",").filter(x => !!x)} />
+            </>
+        );
+    }
+
+    if (props.scheme.type === "image") {
+        return (
+            <>
+                <Typography variant="h4" style={{ marginTop: "16px" }}>{props.scheme.displayName}</Typography>
+                <img alt={props.field.value} src={axios.defaults.baseURL + props.field.value} />
             </>
         );
     }
@@ -107,6 +121,7 @@ function PhotoGalleryPreview(props: { images: string[] }) {
                         setSelected(path);
                         setPath(path);
                     }}
+                    baseUrl={axios.defaults.baseURL}
                 />
 
                 <Backdrop style={{ zIndex: 9999 }} open={!!selected} onClick={() => setSelected(null)}>
@@ -130,7 +145,7 @@ function PhotoGalleryPreview(props: { images: string[] }) {
                             }}
                         >
                             <img
-                                src={path}
+                                src={axios.defaults.baseURL + path}
                                 alt={path}
                                 className={classes.img}
                             />

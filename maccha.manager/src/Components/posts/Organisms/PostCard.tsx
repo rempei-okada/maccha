@@ -30,7 +30,7 @@ import { confirmAsync } from "../../commons/confirmAsync";
 import { services } from "../../../Services";
 import { RoleType } from "../../../Models";
 import { Content } from "../../../Models/Contents/Entities/Content";
-import {axios} from "../../../Repositories/config";
+import { axios } from "../../../Repositories/config";
 
 interface PostCardProps {
     content: Content;
@@ -67,7 +67,7 @@ export function PostCard(props: PostCardProps) {
 
                 <img
                     alt={content.title}
-                    src={axios.defaults.baseURL + content.thumbnail}
+                    src={content.thumbnail ? axios.defaults.baseURL + content.thumbnail : ""}
                     height="148px" style={{
                         objectFit: "cover",
                         background: "rgba(127, 127, 127, 0.1"

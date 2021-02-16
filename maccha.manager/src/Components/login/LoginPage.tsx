@@ -15,6 +15,17 @@ export default function LoginPage() {
     const [password, setPassword] = useState("");
     const [isShowError, setIsShowError] = useState(false);
 
+    useEffect(() => {
+        function onEnter(e: KeyboardEvent) {
+            if (e.key === "Enter") {
+                loginAsync();
+            }
+        }
+
+        document.addEventListener("keydown", onEnter);
+        return () => document.removeEventListener("keydown", onEnter);
+    });
+
     const loginAsync = async () => {
         try {
             await services.authService.login(email, password);

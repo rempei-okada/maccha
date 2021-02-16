@@ -182,7 +182,11 @@ LIMIT ${params.fetch} OFFSET ${params.offset}
                                         schemeId: f.schemeId,
                                         value: f.value
                                     })
-                                )
+                                ),
+                                createdBy: {
+                                    name: "fsefsefs",
+                                    thumbnail: "test"
+                                }
                             })
                         ),
                     )

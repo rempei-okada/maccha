@@ -46,7 +46,6 @@ export class ContentsAppService {
         params: ISearchContentParams
     ): Promise<[Content[], number]> {
         const taxonomyId = await this.taxonomiesService.getIdByNameAsync(taxonomy);
-
         if (taxonomyId === null) {
             throw new BadRequestException(`taxonomy ${taxonomy} is not found`);
         }

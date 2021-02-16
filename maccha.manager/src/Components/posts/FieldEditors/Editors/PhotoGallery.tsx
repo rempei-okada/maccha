@@ -7,6 +7,7 @@ import { Box, IconButton } from "@material-ui/core";
 import { Add, Delete } from "@material-ui/icons";
 import { SchemeType } from "../../../../Models/Contents/Entities/Scheme";
 import { Editor } from "./Editor";
+import { axios } from "../../../../Repositories/config";
 
 export const PhotoGalleryEditor: Editor = {
     fieldEditor: PhotoGallery,
@@ -15,7 +16,6 @@ export const PhotoGalleryEditor: Editor = {
     name: "フォトギャラリー",
     description: "画像の一覧用のフィールドです。APIからは画像URLが返却されます。"
 };
-
 
 export function PhotoGallery(props: FieldEditorProps) {
     const [selected, setSelected] = useState<string[]>([]);
@@ -77,6 +77,7 @@ export function PhotoGallery(props: FieldEditorProps) {
                     span={1}
                     images={props.field.field.value.split(",").filter(x => !!x)}
                     selected={selected}
+                    baseUrl={axios.defaults.baseURL}
                     multiSelect
                     selectionChanged={e => setSelected(e)}
                 ></PhotoGridView>
