@@ -12,12 +12,33 @@ import { History } from "history";
 import { ChildRoute, Route } from "../../Models";
 import HeaderToolbar from "./ecosystems/HeaderToolbar";
 import { lazyWithPreload } from "../../Commons/lazyWithPreload";
+import defaultLogo from "../../../public/maccha.png";
 
 interface MacchaMainProp {
     history: History;
     hiddenLazyRoutes: (Route & { loadedComponent: any })[];
     settings: Route[];
     menus: Route[];
+    logo?: (isOpen: boolean) => JSX.Element;
+}
+
+function DefaultLogo(isOpen: boolean) {
+    return (
+        <>
+            <div style={{
+                marginTop: "2px",
+                marginRight: "4px",
+                height: isOpen ? "48px" : "36px",
+                width: isOpen ? "48px" : "36px",
+                background: theme.palette.primary.main,
+                borderRadius: "50%",
+                filter: "blur(0.6px)"
+            }}></div>
+            <img style={{
+                height: isOpen ? "68px" : "56px"
+            }} src={defaultLogo} alt="maccha logo" />
+        </>
+    );
 }
 
 export default (props: MacchaMainProp) => useObserver(() => {
@@ -49,7 +70,7 @@ export default (props: MacchaMainProp) => useObserver(() => {
                 ))}
                 <DomRoute path="/">
                     <Frame
-                        logo="/maccha.png"
+                        logo={props.logo ?? DefaultLogo}
                         settings={filteredSettings}
                         menus={filteredMenus}
                         user={authService.loginInfo}
@@ -61,7 +82,6 @@ export default (props: MacchaMainProp) => useObserver(() => {
         </Router>
     </ThemeProvider >;
 });
-
 
 // helpers
 function loadAll(root: Route[]) {

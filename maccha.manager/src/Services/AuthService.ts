@@ -1,4 +1,4 @@
-import { observable, computed, action, makeObservable } from "mobx";
+import { makeAutoObservable } from "mobx";
 import { AuthRepository } from "../Repositories/AuthRepository";
 import { LoginInfo } from "../Models/auth/login-info";
 import { RoleType } from "../Models";
@@ -21,16 +21,7 @@ export class AuthService {
      * Constructor.
      */
     constructor() {
-        makeObservable(this, {
-            loginInfo: observable,
-            isLogin: observable,
-            logout: action,
-            loadFromLocalStorage: action,
-            validateAuth: action,
-            refreshAsync: action,
-            login: action,
-            initialize: action
-        });
+        makeAutoObservable(this);
     }
 
     public logout() {

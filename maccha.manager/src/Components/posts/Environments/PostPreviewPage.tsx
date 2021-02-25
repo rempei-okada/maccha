@@ -11,9 +11,9 @@ import { Observer, useObserver } from "mobx-react";
 import { useRouteMatch, useHistory } from "react-router-dom";
 import { PostEditOptionPanel } from "../Ecosystems/PostEditOptionPanel";
 import { RitchEditor } from "../../commons/Editor/RitchEditor";
+import { PostPreviewPanel } from "../Ecosystems/PostPreviewPanel";
 
 import "./style.scss";
-import { PostPreviewPanel } from "../Ecosystems/PostPreviewPanel";
 
 interface TabPanelProps {
     children?: React.ReactNode;

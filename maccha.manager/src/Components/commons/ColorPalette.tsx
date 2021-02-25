@@ -1,4 +1,3 @@
-import classes from "*.module.css";
 import { makeStyles } from "@material-ui/core";
 import React, { useEffect } from "react";
 

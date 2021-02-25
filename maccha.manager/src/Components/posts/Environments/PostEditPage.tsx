@@ -1,12 +1,11 @@
-import React, { useEffect, useState, ReactComponentElement, cloneElement } from "react";
+import React, { useEffect } from "react";
 import {
-    Tabs, Tab, Divider,
-    Icon,
-    TextField, Box, Typography, Button, Select,
+    Divider,
+    Box, Typography
 } from "@material-ui/core";
 import { services } from "../../../Services";
-import { Observer, useObserver } from "mobx-react";
-import { useRouteMatch, useHistory } from "react-router-dom";
+import { Observer } from "mobx-react";
+import { useRouteMatch } from "react-router-dom";
 import { PostEditOptionPanel } from "../Ecosystems/PostEditOptionPanel";
 import { FieldEditor } from "../FieldEditors/FieldEditor";
 import "./style.scss";
@@ -85,7 +84,7 @@ export default function PostEditPage() {
                                         }
 
                                         return <Box key={scheme.schemeId} className="post" maxWidth="100%" width="780px" mt={2}>
-                                            <Typography variant="h5" style={{wordBreak:"break-all"}}>
+                                            <Typography variant="h5" style={{ wordBreak: "break-all" }}>
                                                 {scheme.name} - {scheme.displayName}
                                             </Typography>
                                             <Divider />

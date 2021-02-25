@@ -1,6 +1,5 @@
 import Axios, { AxiosAdapter } from "axios";
 import { LoginInfo } from "../Models/auth/login-info";
-import { container } from "tsyringe";
 import { ServiceContext, services } from "../Services";
 
 export const repositoryConfig = {

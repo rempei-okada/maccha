@@ -24,7 +24,6 @@ import {
 import { LoginUser } from "../../Models/auth/login-user";
 import { axios } from "../../Repositories/config";
 
-
 const closeWidth = 52;
 const drawerWidth = 320;
 const AUTO_CLOSE_WIDTH = 960;
@@ -33,7 +32,7 @@ interface FrameProp {
     menus: (LazyRoute & RouteInfo)[];
     settings: (LazyRoute & RouteInfo)[];
     user: LoginUser;
-    logo: string;
+    logo: (isOpen: boolean) => JSX.Element;
     toolbarContent: React.ReactElement;
 }
 
@@ -165,18 +164,7 @@ export default function Frame(props: FrameProp) {
                             </IconButton>
 
                             <Box ml={mobileOpen ? 4 : 1} display="flex" alignItems="center">
-                                <div style={{
-                                    marginTop: "2px",
-                                    marginRight:"4px",
-                                    height: mobileOpen ? "48px" : "36px",
-                                    width: mobileOpen ? "48px" : "36px",
-                                    background: theme.palette.primary.main,
-                                    borderRadius: "50%",
-                                    filter: "blur(0.6px)"
-                                }}></div>
-                                <img style={{
-                                    height: mobileOpen ? "68px" : "56px"
-                                }} src={props.logo} alt="maccha logo" />
+                                {props.logo(mobileOpen)}
                             </Box>
 
                             {/* Profile */}
@@ -341,8 +329,7 @@ function NavigationList<T extends RouteInfo>(props: DrawerPropos<T>) {
                     variant="caption"
                 >
                     Admin
-                </Typography>
-                }
+                </Typography>}
                 {props.settings.map(route => (
                     <Box
                         key={route.path}

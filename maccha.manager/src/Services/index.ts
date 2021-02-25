@@ -1,3 +1,4 @@
+
 import { AuthService } from "./AuthService";
 import { UsersService } from "./UsersService";
 import { WebSiteManagementsService } from "./WebSiteManagementsService";
@@ -5,10 +6,9 @@ import { PostsService } from "./PostsService";
 import { PostManagementsService } from "./PostManagementsService";
 import { MediaService } from "./MediaService";
 import { PostsEditServic } from "./PostEditService";
-import { container, singleton } from "tsyringe";
 import { PluginsService } from "./PluginsService";
 
-@singleton()
+// @singleton()
 export class ServiceContext {
     constructor(
         readonly authService: AuthService,
@@ -22,13 +22,22 @@ export class ServiceContext {
     ) { }
 }
 
-container
-    .registerType(AuthService, AuthService)
-    .registerType(UsersService, UsersService)
-    .registerType(WebSiteManagementsService, WebSiteManagementsService)
-    .registerType(PostsService, PostsService)
-    .registerType(MediaService, MediaService)
-    .registerType(PostsEditServic, PostsEditServic)
-    .registerType(PostManagementsService, PostManagementsService);
+// container
+//     .registerType(AuthService, AuthService)
+//     .registerType(UsersService, UsersService)
+//     .registerType(WebSiteManagementsService, WebSiteManagementsService)
+//     .registerType(PostsService, PostsService)
+//     .registerType(MediaService, MediaService)
+//     .registerType(PostsEditServic, PostsEditServic)
+//     .registerType(PostManagementsService, PostManagementsService);
 
-export const services = container.resolve(ServiceContext);
+export const services = new ServiceContext(
+    new AuthService(),
+    new UsersService(),
+    new WebSiteManagementsService(),
+    new PostsService(),
+    new PostsEditServic(),
+    new PostManagementsService(),
+    new MediaService(),
+    new PluginsService()
+);

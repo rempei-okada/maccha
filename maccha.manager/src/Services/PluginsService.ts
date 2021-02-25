@@ -28,17 +28,17 @@ export class PluginsService {
             title: "サンプルプラグイン"
         }];
 
-        this._plugins = plugins.map(
-            plugin => ({
-                component: () => this.pluginAdapter.atatch({
-                    pluginName: plugin.pluginName,
-                    url: plugin.url
-                }),
-                role: plugin.role,
-                icon: plugin.icon,
-                path: plugin.path,
-                title: plugin.title,
-            })
-        );
+        // this._plugins = plugins.map(
+        //     plugin => ({
+        //         component: () => this.pluginAdapter.atatch({
+        //             pluginName: plugin.pluginName,
+        //             url: plugin.url
+        //         }),
+        //         role: plugin.role,
+        //         icon: plugin.icon,
+        //         path: plugin.path,
+        //         title: plugin.title,
+        //     })
+        // );
     }
 }
