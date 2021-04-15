@@ -2,10 +2,9 @@ import nodeResolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
 import babel from "@rollup/plugin-babel";
-import scss from "rollup-plugin-scss";
+import sass from "rollup-plugin-sass";
 import babelrc from "babelrc-rollup";
 import image from "@rollup/plugin-image";
-import styles from "rollup-plugin-styles";
 
 export default [
     {
@@ -72,10 +71,8 @@ export default [
                     runtimeHelpers: false
                 })
             ),
-            // styles(),
-            scss({
-                include: ["/**/*.css", "/**/*.scss", "/**/*.sass"],
-                failOnError: true,
+            sass({
+                insert: true,
             }),
         ]
     },

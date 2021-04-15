@@ -1,5 +1,5 @@
 import React from "react";
-import "react-quill/dist/quill.snow.css";
+import "./style.scss";
 
 import ReactQuill from "react-quill";
 

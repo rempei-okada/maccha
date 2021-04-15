@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import "react-quill/dist/quill.snow.css";
+import "./style.scss";
 interface RitchEditorProps {
     content: string;
     contentChanged: (e: string) => void;

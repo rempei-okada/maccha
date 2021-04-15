@@ -14,7 +14,11 @@ function ___$insertStyle(css) {
   return css;
 }
 
-export { aX as MacchaManager } from './index-ae1e2277.js';
-import 'react/jsx-runtime';
-import 'react';
-import 'react-dom';
+import { createElement } from 'react';
+import { b as createSvgIcon } from './index-ae1e2277.js';
+
+var Add = createSvgIcon( /*#__PURE__*/createElement("path", {
+  d: "M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+}), 'Add');
+
+export { Add as A };
