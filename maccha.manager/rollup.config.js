@@ -8,7 +8,7 @@ import image from "@rollup/plugin-image";
 
 export default [
     {
-        input: "./src/index.tsx",
+        input: "./src/index.lib.tsx",
         output: {
             format: "esm",
             dir: "./dist/", // 出力先ディレクトリトップ

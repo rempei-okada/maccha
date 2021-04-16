@@ -12,7 +12,7 @@ import { History } from "history";
 import { ChildRoute, Route } from "../../Models";
 import HeaderToolbar from "./ecosystems/HeaderToolbar";
 import { lazyWithPreload } from "../../Commons/lazyWithPreload";
-import defaultLogo from "../../../public/maccha.png";
+import defaultLogo from "../../Assets/Images/maccha.png";
 
 interface MacchaMainProp {
     history: History;

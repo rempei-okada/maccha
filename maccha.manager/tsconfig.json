@@ -26,12 +26,12 @@
     "noFallthroughCasesInSwitch": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": false,
-    "types": ["src/types"]
+    "noEmit": true,
   },
   "include": [
     "src/**/*.ts",
-    "src/**/*.tsx"
+    "src/**/*.tsx",
+    "public/*"
   ],
   "exclude": [
     "node_modules"
