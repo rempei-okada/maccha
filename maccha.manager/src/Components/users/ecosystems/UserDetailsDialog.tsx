@@ -226,7 +226,7 @@ function UserDetailDialog(props: DialogContentProp<DialogUser, DialogUser | unde
                                         (site, key) => (
                                             <MenuItem key={key} value={site.webSiteId}>
                                                 <Checkbox color="primary" checked={user.identifiers.includes(site.webSiteId)} ></Checkbox>
-                                                <ListItemText>{site.webSiteId} - {site.name}</ListItemText>
+                                                <ListItemText>{site.name} - {site.displayName}</ListItemText>
                                             </MenuItem>
                                         )
                                     )

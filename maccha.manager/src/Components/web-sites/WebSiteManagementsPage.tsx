@@ -136,7 +136,7 @@ export default function WebSiteManagementsPage() {
                                                     color: theme.palette.primary.main
                                                 }}
                                                 target="_blank"
-                                                href={site.host}
+                                                href={site.host} rel="noreferrer"
                                             >
                                                 {site.host}
                                             </a>
