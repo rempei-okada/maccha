@@ -1,9 +1,9 @@
 {
-  "name": "espresso",
-  "version": "1.0.0",
+  "name": "maccha.server",
+  "version": "1.0.1",
   "description": "simple headless cms for creating web sites",
   "author": "",
-  "main": "dist/src/index.js",
+  "main": "dist/dist/index.js",
   "license": "MIT",
   "scripts": {
     "script": "ts-node",
