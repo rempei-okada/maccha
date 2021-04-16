@@ -1,9 +1,9 @@
 {
   "name": "maccha.server",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "simple headless cms for creating web sites",
   "author": "",
-  "main": "dist/dist/index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
     "script": "ts-node",
