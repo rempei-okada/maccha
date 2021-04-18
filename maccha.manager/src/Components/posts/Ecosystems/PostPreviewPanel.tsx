@@ -2,7 +2,7 @@ import React, { useEffect, useState, ReactComponentElement, cloneElement } from 
 import {
     Tabs, Tab, Divider,
     Icon,
-    TextField, Box, Typography, Button, Backdrop, makeStyles
+    TextField, Box, Typography, Button, Backdrop, makeStyles, useTheme
 } from "@material-ui/core";
 import { Post } from "../../../Models/posts/entities/Post";
 import SwipeableViews from "react-swipeable-views";
@@ -47,7 +47,7 @@ export function PostPreviewPanel() {
                             <Typography color="textSecondary">{(content.publishIn ?? content.createdAt).toFormat("y.M.d")}</Typography>
                             <Typography variant="h1" style={{ marginTop: "16px" }}>{content.title}</Typography>
 
-                            <Box mt={3} width="100%">
+                            {content.thumbnail && <Box mt={3} width="100%">
                                 <img
                                     alt={content.title}
                                     src={content.thumbnail}
@@ -57,7 +57,7 @@ export function PostPreviewPanel() {
                                         maxHeight: "480px"
                                     }}
                                 />
-                            </Box>
+                            </Box>}
 
                             {
                                 content.fields.map(f => (
@@ -76,6 +76,8 @@ export function PostPreviewPanel() {
 }
 
 function FieldRenderer(props: { field: Field, scheme: Scheme }) {
+    const them = useTheme();
+
     if (!props.scheme) {
         return <></>;
     }
@@ -83,8 +85,14 @@ function FieldRenderer(props: { field: Field, scheme: Scheme }) {
     if (props.scheme.type === "photo-gallery") {
         return (
             <>
-                <Typography variant="h4" style={{ marginTop: "16px" }}>{props.scheme.displayName}</Typography>
-                <PhotoGalleryPreview images={props.field.value.split(",").filter(x => !!x)} />
+                <Typography variant="h5" style={{
+                    marginTop: "16px",
+                    paddingLeft: "8px",
+                    borderLeft: `4px solid ${them.palette.primary.main}`
+                }}>{props.scheme.displayName}</Typography>
+                <Box mt={2}>
+                    <PhotoGalleryPreview images={props.field.value.split(",").filter(x => !!x)} />
+                </Box>
             </>
         );
     }
@@ -92,16 +100,43 @@ function FieldRenderer(props: { field: Field, scheme: Scheme }) {
     if (props.scheme.type === "image") {
         return (
             <>
-                <Typography variant="h4" style={{ marginTop: "16px" }}>{props.scheme.displayName}</Typography>
-                <img alt={props.field.value} src={axios.defaults.baseURL + props.field.value} />
+                <Typography variant="h5" style={{
+                    marginTop: "16px",
+                    paddingLeft: "8px",
+                    borderLeft: `4px solid ${them.palette.primary.main}`
+                }}>{props.scheme.displayName}</Typography>
+                <Box mt={2}>
+                    <img alt={props.field.value} src={axios.defaults.baseURL + props.field.value} />
+                </Box>
+            </>
+        );
+    }
+
+    if (props.scheme.type === "text-field") {
+        return (
+            <>
+                <Typography variant="h5" style={{
+                    marginTop: "16px",
+                    paddingLeft: "8px",
+                    borderLeft: `4px solid ${them.palette.primary.main}`
+                }}>{props.scheme.displayName}</Typography>
+                <Box mt={2}>
+                    <Typography variant="body1">{props.field.value}</Typography>
+                </Box>
             </>
         );
     }
 
     return (
         <>
-            <Typography variant="h4" style={{ marginTop: "16px" }}>{props.scheme.displayName}</Typography>
-            <div style={{ width: "100%", wordBreak: "break-all" }} dangerouslySetInnerHTML={{ __html: props.field.value }}></div>
+            <Typography variant="h5" style={{
+                marginTop: "16px",
+                paddingLeft: "8px",
+                borderLeft: `4px solid ${them.palette.primary.main}`
+            }}>{props.scheme.displayName}</Typography>
+            <Box mt={2}>
+                <div style={{ width: "100%", wordBreak: "break-all", whiteSpace: "pre-wrap" }} dangerouslySetInnerHTML={{ __html: props.field.value }}></div>
+            </Box>
         </>
     );
 }

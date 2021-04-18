@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { MacchaManager } from "../src/MacchaManager";
+import { MacchaManager } from "../src/index.lib";
 import * as serviceWorker from "./serviceWorker";
 
 (async () => {

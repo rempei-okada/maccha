@@ -104,7 +104,7 @@ export default observer((props: PostListPanelProp) => {
                         fetch={services.postsService.searchOption.fetch}
                         onChange={e => handleChangePage(e)}
                     />
-                    <SearchBox />
+                    {/* <SearchBox /> */}
                 </Box>
 
                 <Box mx={2}>
@@ -118,6 +118,7 @@ export default observer((props: PostListPanelProp) => {
                     <ItemsWrapGrid
                         items={services.postsService.posts.map(item => ({ id: item.contentId, content: item }))}
                         itemSlot={item => <PostCard
+                            key={item.id}
                             previewPressed={() => onPreviewPressed(item.content.contentId)}
                             deletePresed={() => onDeletePresed(item.content)}
                             editPressed={() => onEditPressed(item.content)}

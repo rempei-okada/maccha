@@ -58,7 +58,7 @@ export async function MacchaManager(config?: Partial<MacchaCofig>) {
             history.push("/login");
         }
         else if (history.location.pathname === "/") {
-            history.push("/main");
+            history.push("/posts");
             await bootstrap();
         }
         else {

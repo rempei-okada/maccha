@@ -33,7 +33,6 @@ export class PostTypesService {
         return await this.postTypesRepository.createAsync(identifier, params);
     }
 
-
     /**
      * Save edited post type.
      * @param params to create user info.

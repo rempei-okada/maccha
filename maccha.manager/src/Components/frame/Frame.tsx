@@ -19,7 +19,7 @@ import {
     Hidden,
     Drawer,
     Toolbar,
-    Divider, Avatar
+    Divider, Avatar, Grow
 } from "@material-ui/core";
 import { LoginUser } from "../../Models/auth/login-user";
 import { axios } from "../../Repositories/config";
@@ -52,10 +52,10 @@ function flatten<T extends (ChildRoute | RouteInfo)>(route: (LazyRoute & T)): (L
 export default function Frame(props: FrameProp) {
     const classes = useStyles();
     const history = useHistory();
+    const location = useLocation();
     const [mobileOpen, setMobileOpen] = React.useState(AUTO_CLOSE_WIDTH <= window.innerWidth);
     const [isLoading, setIsLoading] = useState(false);
     const theme = useTheme();
-    const opacityAnimationElement = useRef<HTMLDivElement | null>(null);
 
     const menus = props.menus.reduce(
         (dst, route) => [...flatten<RouteInfo>(route), ...dst],
@@ -67,6 +67,21 @@ export default function Frame(props: FrameProp) {
     );
 
     const routes = [...menus, ...settings];
+
+    const [animationKey, setAnimationKey] = useState("");
+    const isAnimating = useRef(false);
+
+    useEffect(() => {
+        if (isAnimating.current) {
+            return;
+        }
+
+        isAnimating.current = true;
+        setAnimationKey(location.key ?? "");
+        setTimeout(() => {
+            isAnimating.current = false;
+        }, 600);
+    }, [location.key]);
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -92,13 +107,6 @@ export default function Frame(props: FrameProp) {
 
     const routePressed = async (route: FramwRoute) => {
         const timeout = timer(1000).subscribe(() => setIsLoading(true));
-
-        if (opacityAnimationElement.current) {
-            const el = opacityAnimationElement.current;
-            el.style.transition = "opacity 300ms";
-            el.style.opacity = "0";
-        }
-
         await from(route.lazyComponent.preload())
             .pipe(
                 concatMap(_ => timer(300))
@@ -108,12 +116,6 @@ export default function Frame(props: FrameProp) {
             if (isLoading) setIsLoading(false);
         });
         history.push(route.path);
-
-        if (opacityAnimationElement.current) {
-            const el = opacityAnimationElement.current;
-            el.style.transition = "opacity 300ms";
-            el.style.opacity = "1";
-        }
     };
 
     return (
@@ -203,40 +205,42 @@ export default function Frame(props: FrameProp) {
                     </Drawer>
                 </nav>
             </Hidden>
-            <main className={classes.content} >
-                <Toolbar className={classes.toolbar}
-                    style={{ marginRight: "0px", paddingRight: "4px" }}>
-                    <Hidden smUp implementation="js">
-                        <IconButton
-                            color="inherit"
-                            aria-label="open drawer"
-                            onClick={handleDrawerToggle}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                    </Hidden>
-                    <Box
-                        display="flex"
-                        alignItems="center"
-                        width="100%">
-                        {props.toolbarContent}
-                    </Box>
-                </Toolbar>
+            <Grow key={animationKey} timeout={600} in={true}>
+                <main className={classes.content} >
+                    <Toolbar className={classes.toolbar}
+                        style={{ marginRight: "0px", paddingRight: "4px" }}>
+                        <Hidden smUp implementation="js">
+                            <IconButton
+                                color="inherit"
+                                aria-label="open drawer"
+                                onClick={handleDrawerToggle}
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                        </Hidden>
+                        <Box
+                            display="flex"
+                            alignItems="center"
+                            width="100%">
+                            {props.toolbarContent}
+                        </Box>
+                    </Toolbar>
 
-                <Divider style={{ marginLeft: "8px", marginRight: "8px" }} />
+                    <Divider style={{ marginLeft: "8px", marginRight: "8px" }} />
 
-                <div className={classes.mainContainer} ref={opacityAnimationElement}>
-                    <Suspense fallback={
-                        !isLoading && <div style={{ display: "none" }}></div>
-                    }>
-                        <Switch>
-                            {routes.map((route, index) => (
-                                <Route key={index} exact={!!route.exact} path={route.path} component={route.lazyComponent} ></Route>
-                            ))}
-                        </Switch>
-                    </Suspense>
-                </div>
-            </main>
+                    <div className={classes.mainContainer}>
+                        <Suspense fallback={
+                            !isLoading && <div style={{ display: "none" }}></div>
+                        }>
+                            <Switch>
+                                {routes.map((route, index) => (
+                                    <Route key={index} exact={!!route.exact} path={route.path} component={route.lazyComponent} ></Route>
+                                ))}
+                            </Switch>
+                        </Suspense>
+                    </div>
+                </main>
+            </Grow>
         </div >
     );
 }

@@ -5,7 +5,7 @@ import * as serviceWorker from "./serviceWorker";
 
 (async () => {
     const App = await MacchaManager({
-        host: "/",
+        host: "http://localhost:8081/",
         plugins: [
         ]
     });

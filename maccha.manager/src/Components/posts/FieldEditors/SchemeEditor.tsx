@@ -35,7 +35,7 @@ export function SchemeEditor(props: SchemeEditorProps) {
                         <TextField
                             placeholder="例：title"
                             fullWidth
-                            helperText="APIで取得する際のキー名になります（英数字のみ）"
+                            helperText="APIで取得する際のキー名になります"
                             value={scheme.name}
                             onChange={e => handlePropertyChanged("name", e.target.value)}
                         />

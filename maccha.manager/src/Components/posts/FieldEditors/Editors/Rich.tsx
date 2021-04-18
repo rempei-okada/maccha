@@ -3,6 +3,8 @@ import { SchemeType } from "../../../../Models/Contents/Entities/Scheme";
 import { RitchEditor } from "../../../commons/Editor";
 import { FieldEditorProps } from "./../FieldEditorProps";
 import { Editor } from "./Editor";
+import { showMediaSelectionDialog } from "../../Ecosystems/MediaSelectionDialog";
+import { axios } from "../../../../Repositories/config";
 
 export const RichEditor: Editor = {
     schemeEditor: () => <></>,
@@ -21,6 +23,11 @@ export function Rich(props: FieldEditorProps) {
 
     return (
         <RitchEditor
+            uploadImageHandler={async () => {
+                const media = await showMediaSelectionDialog();
+
+                return media ? `${axios.defaults.baseURL}${media}` : null;
+            }}
             content={props.field.field.value}
             contentChanged={e => handleChange(e)}
         />

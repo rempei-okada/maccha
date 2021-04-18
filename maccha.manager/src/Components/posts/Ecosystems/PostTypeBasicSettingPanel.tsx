@@ -60,10 +60,10 @@ export function PostTypeBasicSettingPanel(props: PostTypeBasicSettingPanelProps)
                     placeholder="例：blogs"
                     value={props.postType.taxonomy.name}
                     style={{ marginTop: "16px" }}
-                    rules={/^[A-Za-z0-9]*$/}
+                    rules={/^[A-Za-z0-9-_]*$/}
                     fullWidth
                     helperText="APIのエンドポイントになります"
-                    errorText="英数字のみ"
+                    errorText="英数字および-_のみ"
                     textChanged={(e: any) => handlePostTypeParamsChanged("name", e.value)}
                 />
             </Box>

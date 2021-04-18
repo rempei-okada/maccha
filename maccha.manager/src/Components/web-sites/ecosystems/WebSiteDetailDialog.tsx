@@ -41,7 +41,7 @@ function WebSiteDetailDialog(props: DialogContentProp<IWebSite, IWebSite | undef
         });
 
         if (key === "name") {
-            if (/^[A-Za-z0-9]*$/.test(value) === false) {
+            if (/^[A-Za-z0-9_-]*$/.test(value) === false) {
                 setnameErrorMessage("英数字のみ入力可能です");
                 setCanClose(false);
             }
@@ -124,7 +124,7 @@ function WebSiteDetailDialog(props: DialogContentProp<IWebSite, IWebSite | undef
                             value={webSite.name}
                             onChange={e => setWebSiteParam("name", e.target.value)}
                             error={!!nameErrorMessage}
-                            helperText={!nameErrorMessage ? "英数字のみ" : nameErrorMessage}
+                            helperText={!nameErrorMessage ? "英数字および_-のみ" : nameErrorMessage}
                         />
 
                         <Typography style={{ marginTop: "24px" }}>ホストアドレス</Typography>

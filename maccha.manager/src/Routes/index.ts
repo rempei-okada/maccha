@@ -22,13 +22,13 @@ export const config: RouteConfig = {
         },
     ],
     displayRoutes: [
-        {
-            path: "/main",
-            title: "メイン",
-            icon: "web",
-            component: () => import("../Components/main/MainPage"),
-            role: RoleType.Subscribe
-        },
+        // {
+        //     path: "/main",
+        //     title: "メイン",
+        //     icon: "web",
+        //     component: () => import("../Components/main/MainPage"),
+        //     role: RoleType.Subscribe
+        // },
         {
             path: "/posts",
             title: "投稿",

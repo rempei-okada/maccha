@@ -45,6 +45,12 @@ export const theme = createMuiTheme({
                 }
             },
         },
+        MuiOutlinedInput: {
+            notchedOutline: {
+                borderWidth: "2px",
+                borderColor: "rgba(0, 0, 0, 0.54);"
+            }
+        },
         MuiInputBase: {
             root: {
                 marginTop: "12px!important"

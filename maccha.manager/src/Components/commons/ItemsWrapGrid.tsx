@@ -21,16 +21,15 @@ export function ItemsWrapGrid<T extends { id: string }>(props: ItemsWrapGridProp
     const { itemSlot, items } = props;
     const container = useRef<HTMLDivElement | null>(null);
     const [itemWidth, setItemWidth] = useState("100%");
-    const [intervalId, setIntervalId] = useState(0);
 
     useEffect(() => {
         updateWidth(itemWidth);
-        clearInterval(intervalId);
-        setIntervalId(
-            setInterval(() => {
-                updateWidth(itemWidth);
-            }, 200) as any
-        );
+
+        const id = setInterval(() => {
+            updateWidth(itemWidth);
+        }, 200);
+
+        return () => clearInterval(id);
     }, [itemWidth]);
 
     const segmentLength = props.segmentLength ?? 220;
@@ -55,7 +54,6 @@ export function ItemsWrapGrid<T extends { id: string }>(props: ItemsWrapGridProp
                 {items.map(
                     (post, i) => (
                         <Flipped
-                            stagger
                             key={post.id}
                             flipId={post.id}
                             translate

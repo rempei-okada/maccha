@@ -96,7 +96,7 @@ export function PostEditOptionPanel(props: PostEditOptionPanelProps) {
                         <Typography color="textSecondary">
                             公開時間予約
                         </Typography>
-                        <Box display="flex" alignItems="center">
+                        {/* <Box display="flex" alignItems="center">
                             <Switch
                                 color="primary"
                                 checked={isReservationed}
@@ -108,7 +108,7 @@ export function PostEditOptionPanel(props: PostEditOptionPanelProps) {
                             {
                                 isReservationed ? "ON" : "OFF"
                             }
-                        </Box>
+                        </Box> */}
                         {
                             isReservationed && <>
                                 <MuiPickersUtilsProvider utils={DateFnsUtils}>

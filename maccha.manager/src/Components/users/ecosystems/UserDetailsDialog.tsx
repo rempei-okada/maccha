@@ -215,7 +215,10 @@ function UserDetailDialog(props: DialogContentProp<DialogUser, DialogUser | unde
                                     <div>
                                         {selected.map(
                                             (value: string, key: number) => (
-                                                <Chip color="primary" style={{ marginLeft: "4px" }} key={key} label={value} />
+                                                <Chip color="primary" style={{ marginLeft: "4px" }}
+                                                    key={key}
+                                                    label={webSiteManagementsService.webSites.find(w => w.webSiteId === value)?.name}
+                                                />
                                             )
                                         )}
                                     </div>

@@ -69,7 +69,6 @@ export default function PostsPage() {
     const routeMatch = useRouteMatch<{ taxonomy: string; }>();
     const history = useHistory();
 
-    const [postTypeAnimation, setPostTypeAnimation] = useState(false);
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
     const [postTypeContext, setPostTypeContext] = useState<PostType | null>(null);
@@ -83,7 +82,6 @@ export default function PostsPage() {
                 }
                 else {
                     services.postManagementsService.selectFromName(routeMatch.params.taxonomy);
-                    setPostTypeAnimation(true);
                 }
             }
         });
@@ -110,7 +108,6 @@ export default function PostsPage() {
         services.postManagementsService.selectFromIndex(index);
         const selected = services.postManagementsService.selected;
         if (selected) {
-            setPostTypeAnimation(false);
             setTimeout(() => history.replace(`/posts/${selected.taxonomy.name}`), 10);
         }
         console.log(selected);
@@ -221,35 +218,26 @@ export default function PostsPage() {
 
                         <Divider orientation="vertical" />
 
-                        <Slide
-                            direction="up"
-                            timeout={{
-                                enter: 180,
-                                exit: 50
-                            }}
-                            in={postTypeAnimation}
+                        <Box
+                            flex="1 1 auto"
+                            position="relative"
+                            overflow="hidden"
+                            height="100%"
                         >
-                            <Box
-                                flex="1 1 auto"
-                                position="relative"
-                                overflow="hidden"
-                                height="100%"
-                            >
-                                <PostListPanel />
-                                <Fab
-                                    disabled={!services.postManagementsService.selected || !(authService.loginInfo.role >= RoleType.Post)}
-                                    style={{
-                                        position: "absolute",
-                                        zIndex: 9999,
-                                        right: "24px",
-                                        bottom: "24px"
-                                    }}
-                                    onClick={() => handleNewPost()}
-                                    color="primary">
-                                    <Add />
-                                </Fab>
-                            </Box>
-                        </Slide>
+                            <PostListPanel />
+                            <Fab
+                                disabled={!services.postManagementsService.selected || !(authService.loginInfo.role >= RoleType.Post)}
+                                style={{
+                                    position: "absolute",
+                                    zIndex: 9999,
+                                    right: "24px",
+                                    bottom: "24px"
+                                }}
+                                onClick={() => handleNewPost()}
+                                color="primary">
+                                <Add />
+                            </Fab>
+                        </Box>
 
                         <Divider orientation="vertical" />
 
