@@ -1,6 +1,6 @@
 {
     "name": "maccha.manager",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "main": "./dist/index.lib.js",
     "types": "./dist/index.lib.d.ts",
     "scripts": {
