@@ -135,6 +135,7 @@ class MainModule {
                 }),
                 ServeStaticModule.forRoot({
                     rootPath: option.assetsDir,
+
                 }),
                 AuthModule.register(option),
                 MacchaModule,

@@ -12,7 +12,7 @@ export default [
         output: {
             format: "esm",
             dir: "./dist/", // 出力先ディレクトリトップ
-            entryFileNames: "index.js",
+            entryFileNames: "index.lib.js",
             name: "Maccha"
         },
         globals: {

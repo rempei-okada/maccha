@@ -1,6 +1,6 @@
 {
   "name": "maccha.server",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "simple headless cms for creating web sites",
   "author": "",
   "main": "dist/src/index.js",

@@ -4,7 +4,7 @@ import { ServiceContext, services } from "../Services";
 
 export const repositoryConfig = {
     path: {
-        auth: "api/auth"
+        auth: "/api/auth"
     }
 };
 

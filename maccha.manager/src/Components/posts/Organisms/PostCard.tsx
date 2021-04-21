@@ -4,7 +4,8 @@ import {
     Box,
     Typography,
     Card,
-    Avatar
+    Avatar,
+    Fab
 } from "@material-ui/core";
 import { theme } from "../../../theme";
 import { IPost } from "../../../Models/posts/entities/IPost";

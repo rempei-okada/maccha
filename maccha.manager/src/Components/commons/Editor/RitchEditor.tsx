@@ -22,8 +22,6 @@ const toolbarOptions = [
     ["clean"]                                         // remove formatting button
 ];
 
-
-
 export class RitchEditor extends React.Component<RitchEditorProps> {
     quillRef: any = null;
 
